@@ -45,6 +45,7 @@ class FAMAccount(Lockable):
         return self._user.__str__()
 
     def view_budgets(self):
+        print(f"{self._user.user_type} {self._user.name}'s balance is ${self._bank.balance}\n")
         self._allBudgets.print_all()
 
     def record_transaction(self):

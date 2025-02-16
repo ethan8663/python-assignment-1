@@ -55,7 +55,6 @@ class TransactionManager(ABC):
 
     def check_balance(self):
         if self._FAM_account.check_balance(self._transaction.amount):
-            print("enough money")
             return True
         else:
             print("Not enough money!")

@@ -26,10 +26,10 @@ class Angel(User):
         return f"{self._name}(Angel)"
 
     def near_notify(self):
-        print("Angel is nearing the budget limit")
+        print(f"{self.name} is nearing the budget limit")
 
     def exceed_notify(self):
-        print("Angel exceeded the budget limit")
+        print(f"{self.name} exceeded the budget limit")
 
 class Rebel(User, Lockable):
     def __init__(self, name, age, user_type):
@@ -39,13 +39,13 @@ class Rebel(User, Lockable):
         return f"{self._name}(Rebel)"
 
     def near_notify(self):
-        print("Rebel is nearing the budget limit")
+        print(f"{self.name} is nearing the budget limit")
 
     def exceed_notify(self):
-        print("Rebel exceeded the budget limit")
+        print(f"{self.name} exceeded the budget limit")
 
     def lock(self):
-        print("Rebel is locked")
+        print(f"{self.name} account is locked")
 
 class TroubleMaker(User):
     def __init__(self, name, age, user_type):
@@ -55,10 +55,10 @@ class TroubleMaker(User):
         return f"{self._name}(Troublemaker)"
 
     def near_notify(self):
-        print("Troublemaker is nearing the budget limit")
+        print(f"{self.name} is nearing the budget limit")
 
     def exceed_notify(self):
-        print("Troublemaker exceeded the budget limit")
+        print(f"{self.name} exceeded the budget limit")
 
 class UserFactory:
     _registry = {}

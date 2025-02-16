@@ -14,3 +14,8 @@ class Bank(Updatable):
 
     def check_balance(self, amount):
         return self._balance >= amount
+
+    @property
+    def balance(self):
+        return self._balance
+

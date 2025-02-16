@@ -1,0 +1,213 @@
+    User class abstract implement notifiable
+name age
+
+toString()
+
+    Angel class extends User
+ctor: name, age
+
+toString()
+return name(Angel)
+
+    Rebel class extends User
+ctor: name, age
+
+    TroubleMaker class extends User
+ctor: name, age
+
+    UserFactory class
+_registry = {}
+
+register(cls, name, ref)
+cls._registry[name] = ref
+
+getInstance(cls, name, age, type)
+return cls._registry[type](name, age)
+
+    RebelTransactionManager class implements TransactionManager, Lockable
+    ctor: FAMAccount, AllBudgets, Bank
+          createTransaction()
+          allTransaction list: Transaction
+
+    createTransaction()
+    prompt amount, cat, where
+    record time
+    self.t = Transaction(time, amount, cat, where)
+
+    checkBalance()
+    Bank.balance < self.t.amount
+    false else true
+
+    checkLocked()
+    self.category = AllBudgets.list[cat]
+    return self.category.isLocked
+
+    recordTransaction()
+    self.category.update(t.amount)
+    allTransaction.add(transaction)
+
+    checkNotify()
+    if self.category.total * 0.5 < self.category.amountSpent
+    print you are nearing
+
+    checkLockBudget()
+    if self.category.total <= self.category.amountSpent
+    self.category.lock()
+
+    lock()
+    if allBudgets.countLocked() >= 2
+    FAMAccount.lock()
+
+
+    AngelTransactionManager class
+
+    TroublemakerTransactionManager class
+
+    TransactionManager interface
+    checkBalance()
+    checkLocked()
+    recordTransaction()
+    checkNotify()
+    checkLockBudget()
+
+    TransactionManagerFactory class
+_register = {}
+
+register(cls, name, ref)
+_register[name] = ref
+
+getInstance(cls, name)
+return _register[name]
+
+
+    Menu class
+FAMAccount list
+selectedAccount = None
+
+start()
+while true
+if selectedAccount = None || selectedAccount.isLocked then showMenu()
+get input
+if input = 1 then createAccount()
+else if input = 2 then showFAMAccountList()
+else if input  = 3 break
+else print wrong input
+
+else showUserMenu()
+get input
+if input = 1 then selectedAccount.viewBudgets()
+else if input = 2 then selectedAccount.recordTransaction()
+
+showMenu()
+print 1. Register 2. Login 3. Exit
+
+showUserMenu()
+1. View Budget
+2. Record a transaction
+3. View Transactions by Budget
+4. View Bank Account details
+5. logout
+
+createAccount()
+FAMAccount f = f.createAccount()
+FAMAccount list.add(f)
+selectedAccount = f
+
+showFAMAccountList()
+while true
+for account in FAMAccountList
+print account if isLocked true (Locked)
+
+get input - index
+FAMAccount[index].isLocked = true
+print not available
+else selectedAccount = FAMAccount[index]
+break
+
+
+    FAMAccount class
+User Bank AllBudgets TransactionList - all initialized in createAccount()
+isLocked = false
+
+createAccount()
+prompt name age type
+user = UserFactory.getInstance(name, age, type)
+prompt bank num, name, balance
+bank = Bank(num, name, balance)
+allBudgets = AllBudgets()
+
+toString()
+return user
+
+viewBudgets()
+allBudgets.printAll()
+
+recordTransaction()
+manager = TransactionManagerFactory.getInstance(user.type)(FAM, AllBudgets, Bank)
+manager.checkBalance()
+    checkLocked()
+    recordTransaction()
+    checkNotify()
+    checkLockBudget()
+    if manager instanceof Lockable
+    manager.lock()
+
+
+    Bank class
+ctor: num, name, balance
+
+    Budget class abstract implements Lockable
+total, amountSpent = 0, amountLeft = 0, isLocked = false
+
+    Game class extends Budget
+lock()
+isLocked = true
+
+getInstance(cls)
+prompt total
+return obj
+
+
+    Clothing class extends Budget
+lock()
+isLocked = true
+
+    Out class extends Budget
+lock()
+isLocked = true
+
+    Mis class extends Budget
+lock()
+isLocked = true
+
+    AllBudgets class
+ctor()
+dict of Budgets
+
+init initialize()
+
+printAll()
+for budget in budgets.values
+if budget.isLocked = true print budget + (locked)
+else print budget
+
+initialize()
+game = Game.getInstance()
+clothing = Clothing.getInstance()
+out = Out.getInstance()
+mis = Mis.getInstance()
+
+budgets.put("game", game) x4
+
+countLocked()
+count = 0
+for budget in budgets.values
+if budget.isLocked == true count ++
+return count
+
+    Lockable interface
+lock()
+
+
+
+

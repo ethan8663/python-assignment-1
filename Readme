@@ -1,0 +1,11 @@
+This program implemented all the features required.
+Each class complies with single responsibility principle.
+Used interfaces for future extension.
+Used Factory design pattern.
+Used inheritance, polymorphism, and abstraction.
+
+Assumed user enter valid input to the program. Failed to handle all the edge cases.
+UML shows all the necessary data but not complete.
+
+
+UML: https://drive.google.com/file/d/1YzR4QQGIJ8BDy-qjGJSkCNVAOQrexKNW/view?usp=sharing

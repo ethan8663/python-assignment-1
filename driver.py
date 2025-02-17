@@ -1,19 +1,38 @@
+"""
+This module contains Menu class and main method to drive a program.
+"""
+
 from FAM_account import FAMAccount
 from user import UserFactory, Angel, TroubleMaker, Rebel
 from transaction import TransactionManagerFactory, AngelTransactionManager, RebelTransactionManager, \
     TroubleMakerTransactionManager
 
-
 class Menu:
+    """
+    Represents a menu to drive a program.
+    """
+
     def __init__(self):
+        """
+        Constructs an object with empty fam account list.
+        """
+
         self._FAM_account_list = []
         self._selected_account = None
 
     def check_account_locked(self):
+        """
+        Checks if the account is locked.
+        :return: true or false
+        """
         return self._selected_account.is_locked()
 
 
     def start(self):
+        """
+        Starts the program.
+        """
+
         print("Welcome to the FAM! Select from the options below")
         while True:
             print("1. Register new user")
@@ -21,6 +40,7 @@ class Menu:
             print("3. Exit program")
 
             user_input = int(input())
+
             if user_input == 1:
                 self.create_account()
             elif user_input == 2:
@@ -39,6 +59,7 @@ class Menu:
                 print("5. Logout")
 
                 user_input = int(input())
+
                 if user_input == 1:
                     self._selected_account.view_budgets()
                 elif user_input == 2:
@@ -54,10 +75,10 @@ class Menu:
                 else:
                     print("wrong input")
 
-
-
-
     def create_account(self):
+        """
+        Creates an account
+        """
         print("Registering a new user")
         f_account = FAMAccount()
         self._FAM_account_list.append(f_account)
@@ -65,6 +86,10 @@ class Menu:
         print(f"Logged in as {self._selected_account}")
 
     def show_fam_account_list(self):
+        """
+        Shows the list of fam accounts.
+        """
+
         if not self._FAM_account_list:
             print("There is no account")
             return
@@ -86,9 +111,12 @@ class Menu:
                 print(f"Logged in as {self._selected_account}")
                 break
 
-
-
 def main():
+    """
+    Drives the program.
+    """
+
+    # Register first
     UserFactory.register("angel", Angel)
     UserFactory.register("troublemaker", TroubleMaker)
     UserFactory.register("rebel", Rebel)
@@ -99,7 +127,6 @@ def main():
 
     menu  = Menu()
     menu.start()
-
 
 if __name__ == "__main__":
     main()
